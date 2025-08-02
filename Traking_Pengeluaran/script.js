@@ -170,11 +170,12 @@ function editExpense(index) {
   const nameInput = document.createElement("input");
   nameInput.type = "text";
   nameInput.value = expense.name;
-  nameInput.focus();
+  nameInput.style.width = "100%";
 
   const amountInput = document.createElement("input");
   amountInput.type = "number";
   amountInput.value = expense.amount;
+  amountInput.style.width = "100%";
 
   const saveBtn = document.createElement("button");
   saveBtn.textContent = "💾";
@@ -190,6 +191,7 @@ function editExpense(index) {
       showNotification("Data tidak valid saat edit!", "error");
       return;
     }
+
     const originalIndex = expenses.findIndex(
       (e) =>
         e.name === expense.name &&
@@ -201,6 +203,7 @@ function editExpense(index) {
       showNotification("Data tidak ditemukan di database.", "error");
       return;
     }
+
     expenses[originalIndex].name = newName;
     expenses[originalIndex].amount = newAmount;
     applyFilter();
@@ -211,26 +214,30 @@ function editExpense(index) {
   cancelBtn.textContent = "❌";
   cancelBtn.onclick = () => applyFilter();
 
-  [
-    document
-      .createElement("td")
-      .appendChild(document.createTextNode(index + 1)),
-    document.createElement("td").appendChild(nameInput),
-    document
-      .createElement("td")
-      .appendChild(document.createTextNode(expense.type)),
-    document
-      .createElement("td")
-      .appendChild(document.createTextNode(expense.date.slice(0, 10))),
-    document.createElement("td").appendChild(amountInput),
-    (() => {
-      const cell = document.createElement("td");
-      cell.append(saveBtn, cancelBtn);
-      return cell;
-    })(),
-  ].forEach((cell) => row.appendChild(cell));
-}
+  // Fungsi bantu membuat <td>
+  const createCell = (content) => {
+    const td = document.createElement("td");
+    td.style.display = "table-cell";
+    td.style.verticalAlign = "middle";
+    if (typeof content === "string" || typeof content === "number") {
+      td.textContent = content;
+    } else {
+      td.appendChild(content);
+    }
+    return td;
+  };
 
+  row.appendChild(createCell(index + 1)); // No
+  row.appendChild(createCell(nameInput)); // Input nama
+  row.appendChild(createCell(expense.type)); // Jenis
+  row.appendChild(createCell(expense.date.slice(0, 10))); // Tanggal
+  row.appendChild(createCell(amountInput)); // Input amount
+
+  const actionTd = createCell(""); // Tombol aksi
+  actionTd.appendChild(saveBtn);
+  actionTd.appendChild(cancelBtn);
+  row.appendChild(actionTd);
+}
 // Hapus transaksi
 function removeExpense(index) {
   const target = filtered[index];

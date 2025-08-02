@@ -1,4 +1,4 @@
-/* Container agar tampil rapi */
+/* === Root Container === */
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -6,13 +6,13 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* Header */
+/* === Header === */
 h1 {
   text-align: center;
   margin-bottom: 30px;
 }
 
-/* Wrapper antar form */
+/* === Form Section === */
 .form-wrapper {
   display: flex;
   flex-direction: column;
@@ -20,14 +20,12 @@ h1 {
   margin-bottom: 30px;
 }
 
-/* Baris tiap form */
 .form-row {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* Input & Button inline */
 .form-inline {
   display: flex;
   flex-wrap: wrap;
@@ -61,13 +59,13 @@ h1 {
   background-color: #218838;
 }
 
-/* Tabel */
+/* === Table === */
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin-top: 20px;
   border-radius: 12px;
-  overflow: hidden;
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
@@ -81,6 +79,7 @@ th, td {
   font-size: 15px;
   font-family: 'Inter', sans-serif;
   text-align: left;
+  border: none;
   border-bottom: 1px solid #f0f0f0;
 }
 
@@ -89,7 +88,23 @@ tr:hover {
   transition: background-color 0.2s ease-in-out;
 }
 
-/* Table Buttons */
+thead tr:first-child th:first-child {
+  border-top-left-radius: 12px;
+}
+
+thead tr:first-child th:last-child {
+  border-top-right-radius: 12px;
+}
+
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+/* === Table Buttons === */
 table td button {
   padding: 6px 10px;
   margin: 0 2px;
@@ -110,37 +125,31 @@ button.delete {
   color: #fff;
 }
 
-/* Border radius untuk ujung tabel */
-thead tr:first-child th:first-child {
-  border-top-left-radius: 12px;
+/* === Status Warna === */
+.income {
+  color: #27ae60;
+  font-weight: bold;
 }
 
-thead tr:first-child th:last-child {
-  border-top-right-radius: 12px;
+.cashout {
+  color: #e74c3c;
+  font-weight: bold;
 }
 
-tbody tr:last-child td:first-child {
-  border-bottom-left-radius: 12px;
-}
-
-tbody tr:last-child td:last-child {
-  border-bottom-right-radius: 12px;
-}
-
-/* Total Display */
+/* === Total Display === */
 h2 {
   text-align: right;
   margin-top: 20px;
 }
 
-/* Notifikasi */
+/* === Notifikasi === */
 #notification {
   position: fixed;
   top: 20px;
   right: 20px;
   padding: 12px 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   z-index: 999;
   display: none;
   opacity: 0;
@@ -152,16 +161,7 @@ h2 {
   opacity: 1;
 }
 
-.income {
-  color: #27ae60;
-  font-weight: bold;
-}
-
-.cashout {
-  color: #e74c3c;
-  font-weight: bold;
-}
-
+/* === Chart === */
 #expense-chart {
   width: 100%;
   max-width: 500px;
@@ -169,7 +169,7 @@ h2 {
   margin: 0 auto;
 }
 
-/* Dark Mode Toggle */
+/* === Dark Mode Toggle === */
 .toggle-dark {
   position: absolute;
   top: 20px;
@@ -181,7 +181,7 @@ h2 {
   border-radius: 20px;
   cursor: pointer;
   font-size: 14px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: background 0.3s;
 }
 
@@ -189,7 +189,7 @@ h2 {
   background: #444;
 }
 
-/* DARK MODE */
+/* === Dark Mode Styles === */
 body.dark-mode {
   background-color: #121212;
   color: #f1f1f1;
@@ -236,7 +236,12 @@ body.dark-mode button.delete {
   color: #fff;
 }
 
-/* Export Button */
+body.dark-mode .card {
+  background-color: #1f1f1f;
+  color: #f1f1f1;
+}
+
+/* === Export Button === */
 #export-btn {
   background-color: #4CAF50;
   color: white;
@@ -258,36 +263,11 @@ body.dark-mode button.delete {
   cursor: not-allowed;
 }
 
-/* Card */
+/* === Card Section === */
 .card {
   background: white;
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   margin-bottom: 1rem;
-}
-
-body.dark-mode .card {
-  background-color: #1f1f1f;
-  color: #f1f1f1;
-}
-
-th, td {
-  border-right: none !important;
-}
-
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-th, td {
-  border: none;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-body.dark-mode td,
-body.dark-mode th {
-  border: none;
-  border-bottom: 1px solid #2a2a2a;
 }
